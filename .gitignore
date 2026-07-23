@@ -3,3 +3,4 @@ credenciais.h
 c_cpp_properties.json
 extensions.json
 launch.json
+.vscode/
