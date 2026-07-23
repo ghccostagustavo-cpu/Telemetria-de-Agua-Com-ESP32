@@ -33,4 +33,8 @@
 #define LIMITE_CONDUT_WARN 500.0f
 #define LIMITE_CONDUT_CRIT 1000.0f
 
+//turbidez
+#define LIMITE_TURB_WARN 100.0f
+#define LIMITE_TURB_CRIT 200.0f
+
 #endif //PROJ_AGUA_DOIS_CONFIG_H

@@ -5,6 +5,7 @@
 #ifndef PROJ_AGUA_DOIS_MONITOR_AGUA_H
 #define PROJ_AGUA_DOIS_MONITOR_AGUA_H
 
+#include "Arduino.h"
 #include "config.h"
 
 struct Metricas {
@@ -15,7 +16,14 @@ struct Metricas {
     float condutividade;
     float vazao;
     bool chuva;
-    String status;
+    //status
+    String statuspH;
+    String statusChuva;
+    String statusVazao;
+    String statusOxi_Dissolvido;
+    String statusTemperatura;
+    String statusTurbidez;
+    String statusCondutividade;
 };
 
 Metricas lerMonitor();
