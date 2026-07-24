@@ -5,6 +5,7 @@
 #include "WiFi.h"
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+#include <NTPClient.h>
 
 WiFiClient espCliente;
 PubSubClient client(espCliente);
@@ -20,20 +21,23 @@ void setup() {
     pinMode(SENSOR_OXIGENIO_DISSOLVIDO,INPUT);
 
     //inicializacoes
-    Serial.begin(115200);
+    Serial.begin(9600);
     WiFi.begin(WIFI_SSID,WIFI_SENHA);
 
     while (WiFi.status()!=WL_CONNECTED) {
         delay(500);
         Serial.print("-.");
     }
+    if (WiFi.status()==WL_CONNECTED) {
+        Serial.println("\nWiFi conectado");
+        Serial.println(WiFi.localIP());
+    }
 
-    Serial.println("WiFi conectado");
-    Serial.println(WiFi.localIP());
-
-    client.setServer(NOME_SERVIDOR,8883);
+    client.setServer(AZ_HOST,8883);
 }
 
 void loop() {
+
+
 
 }
