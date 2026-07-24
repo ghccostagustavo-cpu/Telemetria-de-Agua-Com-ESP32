@@ -37,8 +37,8 @@ Metricas lerMonitor(){
 
 if (m.oxi_dissolvido <= LIMITE_OXIGENIO_CRIT)
         m.statusOxi_Dissolvido = "Oxigenio dissolvido criticamente baixo";
-    else if (m.oxi_dissolvido <= LIMITE_OXIGENIO_WARN)
-        m.statusOxi_Dissolvido = "Oxigenio dissolvido perigosamente baixo";
+else if (m.oxi_dissolvido <= LIMITE_OXIGENIO_WARN)
+    m.statusOxi_Dissolvido = "Oxigenio dissolvido perigosamente baixo";
 
     //turbidez
     if(m.turbidez>=LIMITE_TURB_WARN && m.turbidez<LIMITE_TURB_CRIT)
