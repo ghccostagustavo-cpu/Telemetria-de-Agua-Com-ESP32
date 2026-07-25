@@ -5,7 +5,6 @@
 #include "WiFi.h"
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
-#include <NTPClient.h>
 
 WiFiClient espCliente;
 PubSubClient client(espCliente);
