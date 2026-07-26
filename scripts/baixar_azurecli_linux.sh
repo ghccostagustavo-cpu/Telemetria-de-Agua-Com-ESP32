@@ -1,0 +1,1 @@
+curl -sL https://aka.ms | sudo bash
