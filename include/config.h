@@ -2,6 +2,7 @@
 #define PROJ_AGUA_DOIS_CONFIG_H
 
 #include <Arduino.h>
+#include <OneWire.h>
 
 //pinos
 #define SENSOR_CHUVA 22
@@ -11,6 +12,7 @@
 #define SENSOR_PH 12
 #define SENSOR_CONDUTIVIDADE 13
 #define SENSOR_OXIGENIO_DISSOLVIDO 14
+
 
 //sistema
 #define ID "ESP32_SENSOR_PAMPULHA_001"
@@ -36,5 +38,8 @@
 //turbidez
 #define LIMITE_TURB_WARN 100.0f
 #define LIMITE_TURB_CRIT 200.0f
+
+
+
 
 #endif //PROJ_AGUA_DOIS_CONFIG_H

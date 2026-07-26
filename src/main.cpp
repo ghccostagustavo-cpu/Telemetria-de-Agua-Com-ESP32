@@ -39,6 +39,7 @@ bool conectarAzure() {
 
 void setup() {
 
+
     //inicializacoes
     Serial.begin(9600);
     WiFi.begin(WIFI_SSID,WIFI_SENHA);
@@ -69,7 +70,10 @@ void setup() {
     pinMode(SENSOR_VAZAO,INPUT);
     pinMode(SENSOR_PH,INPUT);
     pinMode(SENSOR_OXIGENIO_DISSOLVIDO,INPUT);
+    pinMode(SENSOR_CONDUTIVIDADE,INPUT);
 
+    //funcao do sensor de vazao setup
+    setupSensorVazao();
 }
 
 void loop() {
@@ -82,7 +86,8 @@ void loop() {
     client.loop();
 
 
-    Metricas dados = lerMonitor();
+    Metricas dados = lerMonitor();//para simular dados dos sensores. para ler os sensores reais:
+    //Metricas dados = lerSensores();
     //criando documento json para publicar no azure
     JsonDocument doc;
     doc["ph"]= dados.ph;

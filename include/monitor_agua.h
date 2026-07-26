@@ -28,4 +28,8 @@ struct Metricas {
 
 Metricas lerMonitor();
 
+Metricas lerSensores();
+
+void setupSensorVazao();
+
 #endif //PROJ_AGUA_DOIS_MONITOR_AGUA_H
