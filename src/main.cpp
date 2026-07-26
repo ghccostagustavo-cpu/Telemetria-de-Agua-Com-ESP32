@@ -16,10 +16,31 @@
 WiFiClientSecure espCliente;
 PubSubClient client(espCliente);
 
+String mqttUser() {
+    return String(AZ_HOST) + "/" + String(AZ_ID_DEVICE) + "/?api-version=2021-04-12";
+}
+
+bool conectarAzure() {
+    if (client.connected()) {
+        return true;
+    }
+
+    client.disconnect();
+    String user = mqttUser();
+    if (client.connect(AZ_ID_DEVICE, user.c_str(), AZ_SAS_TOKEN)) {
+        Serial.println("\nMQTT Conectado!");
+        return true;
+    }
+
+    Serial.print("Falha na conexao MQTT, rc = ");
+    Serial.println(client.state());
+    return false;
+}
+
 void setup() {
 
     //inicializacoes
-    Serial.begin(115200);
+    Serial.begin(9600);
     WiFi.begin(WIFI_SSID,WIFI_SENHA);
 
     while (WiFi.status()!=WL_CONNECTED) {
@@ -31,22 +52,15 @@ void setup() {
         Serial.println(WiFi.localIP());
     }
 
+    delay(2000);
 
-    //azure - inicializando cliente
-    String user = String(AZ_HOST) + "/" + String(AZ_ID_DEVICE) + "/?api-version=2021-04-12";
     client.setServer(AZ_HOST,8883);
+    client.setBufferSize(2048);
+    client.setKeepAlive(60);
+    client.setSocketTimeout(60);
+
     espCliente.setInsecure();
-    client.connect(
-        AZ_ID_DEVICE,
-        user.c_str(),
-        AZ_SAS_TOKEN
-        );
-    if (client.connect(AZ_ID_DEVICE, user.c_str(), AZ_SAS_TOKEN))
-        Serial.println("\nMQTT Conectado!");
-    else {
-        Serial.print("Falha na conexao MQTT, rc = ");
-        Serial.println(client.state());
-    }
+    conectarAzure();
 
     //definicao de portas
     pinMode(SENSOR_CHUVA,INPUT);
@@ -60,9 +74,9 @@ void setup() {
 
 void loop() {
 
-    if (!client.connected()) {
-        String user = String(AZ_HOST) + "/" + String(AZ_ID_DEVICE) + "/?api-version=2021-04-12";
-        client.connect(AZ_ID_DEVICE, user.c_str(), AZ_SAS_TOKEN);
+    if (!conectarAzure()) {
+        delay(5000);
+        return;
     }
 
     client.loop();
@@ -88,9 +102,10 @@ void loop() {
     String jsonString;
     serializeJson(doc,jsonString);
 
-    //publicando no azure
     String topic_az = "devices/" + String(AZ_ID_DEVICE) + "/messages/events/";
-    client.publish(topic_az.c_str(),jsonString.c_str());
+    if (!client.publish(topic_az.c_str(),jsonString.c_str())) {
+        Serial.println("Falha ao publicar mensagem");
+    }
 
     delay(6000);
 }
