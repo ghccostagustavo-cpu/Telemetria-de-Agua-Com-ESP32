@@ -5,3 +5,5 @@ extensions.json
 launch.json
 .vscode/
 .env
+.lib/
+.idea
