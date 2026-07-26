@@ -21,9 +21,9 @@ String mqttUser() {
 }
 
 bool conectarAzure() {
-    if (client.connected()) {
+    if (client.connected())
         return true;
-    }
+    
 
     client.disconnect();
     String user = mqttUser();
