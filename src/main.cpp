@@ -73,7 +73,7 @@ void setup() {
     pinMode(SENSOR_CONDUTIVIDADE,INPUT);
 
     //funcao do sensor de vazao setup
-    setupSensorVazao();
+    //setupSensorVazao();
 }
 
 void loop() {
