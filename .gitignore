@@ -1,9 +1,37 @@
-.pio
-credenciais.h
-c_cpp_properties.json
-extensions.json
-launch.json
-.vscode/
-.env
-.lib/
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Firmware build/debug artifacts
+*.bin
+*.elf
+*.map
+*.hex
+*.lst
+*.o
+*.a
+*.log
+*.tmp
+*.bak
+
+# IDEs
 .idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Local credentials and environment files
+include/credenciais.h
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.crt
+
+# OS files
+.DS_Store
+Thumbs.db
