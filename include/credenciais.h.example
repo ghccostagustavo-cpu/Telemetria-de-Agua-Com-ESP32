@@ -1,0 +1,11 @@
+#ifndef PROJ_AGUA_DOIS_CREDENCIAIS_H
+#define PROJ_AGUA_DOIS_CREDENCIAIS_H
+
+#define WIFI_SSID "SEU_WIFI_SSID"
+#define WIFI_SENHA "SUA_WIFI_SENHA"
+
+#define AZ_ID_DEVICE "SEU_DEVICE_ID"
+#define AZ_HOST "seu-iothub.azure-devices.net"
+#define AZ_SAS_TOKEN "SharedAccessSignature sr=...&sig=...&se=..."
+
+#endif // PROJ_AGUA_DOIS_CREDENCIAIS_H
