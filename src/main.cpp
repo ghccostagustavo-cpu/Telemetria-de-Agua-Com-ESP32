@@ -85,9 +85,17 @@ void loop() {
 
     client.loop();
 
+    
+    //Segue a captura das informacoes. Conforme explicitado no readme, temos a funcao de simular dados com random (monitor_agua_simulador.cpp)
+    //Para captura real dos dados dos sensores, a funcao padrao esta construida em leitura.cpp
 
-    Metricas dados = lerMonitor();//para simular dados dos sensores. para ler os sensores reais:
+    //Abaixo, a aquisição dos dados. Para dados simulados (padrao), use a funcao abaixo
+    Metricas dados = lerMonitor();//
+    //Pra ler os sensores reais, descomente a funcao abaixo e comente a funcao acima
     //Metricas dados = lerSensores();
+    
+
+
     //criando documento json para publicar no azure
     JsonDocument doc;
     doc["ph"]= dados.ph;
